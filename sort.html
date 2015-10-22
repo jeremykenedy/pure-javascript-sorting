@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Pure JavaScript Sorting</title>
+		<meta name="author" content="Jeremy Kenedy">
+	</head>
+	<body>
+		<button onclick="sort_the_records(the_records,'asc','the_display')">SORT ASCENDING</button>
+		<button onclick="sort_the_records(the_records,'desc','the_display')">SORT DESCENDING</button>
+		<p id="the_display"></p>
+		<script>
+			// TEMPORARY RECORDS ARRAY (REPLACE WITH RECORD IMPORT FUNCTION)
+			var the_records = [40, 100, 1, 5, 25, 10];
+
+			// DISPLAY INITIAL IMPORTED RECORDS
+			document.getElementById("the_display").innerHTML = the_records;
+
+			function sort_the_records(the_records_input,sort_type,the_display_view) {
+				var sort_method;
+				switch(sort_type) {
+					case 'asc':
+						sort_method = the_records_input.sort(function(a, b){return a-b});
+						break;
+
+					case 'desc':
+					default:
+						sort_method = the_records_input.sort(function(a, b){return b-a});
+
+						break;
+				}
+				sort_records();
+
+				function sort_records() {
+				    display_records('updated');
+				}
+
+				function display_records(records_to_display) {
+					var the_display_return;
+					switch(records_to_display) {
+						case 'original':
+							he_display_return = the_records;
+							break;
+						case 'updated':
+						default:
+							the_display_return = the_records_input;
+							break;
+					}
+					document.getElementById(the_display_view).innerHTML = the_display_return;
+				}
+			}
+		</script>
+	</body>
+</html>
